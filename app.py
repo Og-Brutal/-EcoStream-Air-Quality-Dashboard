@@ -217,7 +217,13 @@ def main():
             # Add Centroids
             fig.add_scatter(x=[res_pc1_mean], y=[res_pc2_mean], mode='markers', marker=dict(symbol='x', size=15, color='white', line=dict(width=2, color='black')), name='Residential Centroid')
             fig.add_scatter(x=[ind_pc1_mean], y=[ind_pc2_mean], mode='markers', marker=dict(symbol='x', size=15, color='white', line=dict(width=2, color='black')), name='Industrial Centroid')
-            fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)', xaxis=dict(showgrid=False, zeroline=True, zerolinewidth=1, zerolinecolor='#555'), yaxis=dict(showgrid=False, zeroline=True, zerolinewidth=1, zerolinecolor='#555'))
+            fig.update_layout(
+                plot_bgcolor='rgba(0,0,0,0)', 
+                paper_bgcolor='rgba(0,0,0,0)', 
+                font=dict(color="white"),
+                xaxis=dict(showgrid=False, zeroline=True, zerolinewidth=1, zerolinecolor='#555', tickfont=dict(color="white"), title_font=dict(color="white")), 
+                yaxis=dict(showgrid=False, zeroline=True, zerolinewidth=1, zerolinecolor='#555', tickfont=dict(color="white"), title_font=dict(color="white"))
+            )
             st.plotly_chart(fig, use_container_width=True)
 
         with stats_col:
@@ -331,7 +337,7 @@ def main():
             ),
         )
         fig_heat.update_traces(
-            textfont=dict(size=8, color="#222"),
+            textfont=dict(size=8, color="white"),
             hovertemplate=(
                 "<b>%{y}</b><br>"
                 "Month: <b>%{x}</b><br>"
@@ -341,12 +347,13 @@ def main():
         )
         fig_heat.update_coloraxes(
             colorbar=dict(
-                title=dict(text="Violation<br>Rate", font=dict(size=11)),
+                title=dict(text="Violation<br>Rate", font=dict(size=11, color="white")),
                 tickformat=".0%",
                 thickness=14,
                 len=0.80,
                 tickvals=[0, 0.25, 0.5, 0.75, 1.0],
                 ticktext=["0%","25%","50%","75%","100%"],
+                tickfont=dict(color="white"),
             )
         )
         fig_heat.update_layout(
@@ -356,17 +363,17 @@ def main():
             paper_bgcolor="rgba(0,0,0,0)",
             xaxis=dict(
                 side="bottom",
-                title=dict(text="Month of Year", font=dict(size=13)),
-                tickfont=dict(size=12, color="#222"),
+                title=dict(text="Month of Year", font=dict(size=13, color="white")),
+                tickfont=dict(size=12, color="white"),
                 showgrid=False,
             ),
             yaxis=dict(
-                title=dict(text="Monitoring Station", font=dict(size=12)),
-                tickfont=dict(size=10, color="#222"),
+                title=dict(text="Monitoring Station", font=dict(size=12, color="white")),
+                tickfont=dict(size=10, color="white"),
                 showgrid=False,
                 automargin=True,
             ),
-            font=dict(family="Inter, Arial, sans-serif"),
+            font=dict(family="Inter, Arial, sans-serif", color="white"),
         )
         st.plotly_chart(fig_heat, use_container_width=True)
 
@@ -410,11 +417,12 @@ def main():
             )
             fig_hr.update_layout(
                 plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+                font=dict(color="white"),
                 coloraxis_showscale=False,
                 xaxis=dict(tickmode='linear', tick0=0, dtick=2, showgrid=False,
-                           tickfont=dict(size=10)),
+                           tickfont=dict(size=10, color="white"), title_font=dict(color="white")),
                 yaxis=dict(tickformat=".0%", showgrid=True,
-                           gridcolor="rgba(0,0,0,0.06)", tickfont=dict(size=10)),
+                           gridcolor="rgba(128,128,128,0.15)", tickfont=dict(size=10, color="white"), title_font=dict(color="white")),
                 margin=dict(l=0, r=10, t=50, b=10),
                 height=340,
             )
@@ -452,9 +460,11 @@ def main():
             )
             fig_mon.update_layout(
                 plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+                font=dict(color="white"),
                 coloraxis_showscale=False,
                 yaxis=dict(tickformat=".0%", showgrid=True,
-                           gridcolor="rgba(0,0,0,0.06)", tickfont=dict(size=10)),
+                           gridcolor="rgba(128,128,128,0.15)", tickfont=dict(size=10, color="white"), title_font=dict(color="white")),
+                xaxis=dict(showgrid=False, tickfont=dict(size=10, color="white"), title_font=dict(color="white")),
                 margin=dict(l=0, r=10, t=50, b=10),
                 height=340,
             )
@@ -632,16 +642,17 @@ displaying probabilities across multiple orders of magnitude simultaneously.
                         'pm25_mean': ':.1f', 'pop_density': ':,'},
             title='PM2.5 vs Population Density — Bivariate Bubble Map'
         )
-        fig_bubble.update_traces(textposition='top center', textfont_size=9,
+        fig_bubble.update_traces(textposition='top center', textfont_size=9, textfont_color="white",
                                   marker=dict(symbol='circle', opacity=0.85,
                                               line=dict(width=1, color='rgba(255,255,255,0.4)')))
         fig_bubble.update_layout(
             plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
-            xaxis=dict(showgrid=False),
-            yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)'),
-            coloraxis_colorbar=dict(title='PM2.5 (μg/m³)', thickness=15, xpad=10),
+            font=dict(color="white"),
+            xaxis=dict(showgrid=False, tickfont=dict(color="white"), title_font=dict(color="white")),
+            yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)', tickfont=dict(color="white"), title_font=dict(color="white")),
+            coloraxis_colorbar=dict(title=dict(text='PM2.5 (μg/m³)', font=dict(color="white")), thickness=15, xpad=10, tickfont=dict(color="white")),
             margin=dict(l=0, r=100, t=50, b=0),  # right margin for colorbar
-            legend=dict(orientation='h', yanchor='bottom', y=-0.15)
+            legend=dict(orientation='h', yanchor='bottom', y=-0.15, font=dict(color="white"))
         )
         st.plotly_chart(fig_bubble, use_container_width=True)
         # ── Part 3: Color Scale Justification ────────────────

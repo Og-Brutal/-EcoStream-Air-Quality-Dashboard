@@ -173,9 +173,9 @@ def build_histogram_fig(pm25: np.ndarray, station: str) -> go.Figure:
         yaxis_title='Frequency (Count)',
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
-        showlegend=False,
-        xaxis=dict(showgrid=False),
-        yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)'),
+        font=dict(color="white"),
+        xaxis=dict(showgrid=False, tickfont=dict(color="white"), title_font=dict(color="white")),
+        yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)', tickfont=dict(color="white"), title_font=dict(color="white")),
         margin=dict(l=0, r=0, t=55, b=0),
     )
     return fig
@@ -232,11 +232,10 @@ def build_survival_fig(pm25: np.ndarray, station: str, p99: float) -> go.Figure:
         xaxis_title='PM2.5 Concentration (μg/m³)',
         yaxis_title='Survival Probability  P(PM2.5 > x)  [log scale]',
         yaxis_type='log',
-        plot_bgcolor='rgba(0,0,0,0)',
-        paper_bgcolor='rgba(0,0,0,0)',
-        xaxis=dict(showgrid=False),
-        yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)'),
-        legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1),
+        font=dict(color="white"),
+        xaxis=dict(showgrid=False, tickfont=dict(color="white"), title_font=dict(color="white")),
+        yaxis=dict(showgrid=True, gridcolor='rgba(128,128,128,0.15)', tickfont=dict(color="white"), title_font=dict(color="white")),
+        legend=dict(orientation='h', yanchor='bottom', y=1.02, xanchor='right', x=1, font=dict(color="white")),
         margin=dict(l=0, r=0, t=65, b=0),
     )
     return fig
